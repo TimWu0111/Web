@@ -1,0 +1,35 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#signup, #login
+{
+  margin-right:.5rem;
+}
+
+.container-fluid {
+	text-align: center; 
+}
+
+#Genre{
+  margin-left:.5rem;
+}
+
+#left{
+  min-height: 100%;
+  padding: 0px;
+}
+
+.footer{
+  position: relative;
+}
+

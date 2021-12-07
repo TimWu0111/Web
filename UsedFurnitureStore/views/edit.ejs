@@ -1,0 +1,42 @@
+<!------------------------------------------------------------- 
+	admin edite page
+--------------------------------------------------------------->
+<%- include ('partials/header') %>
+
+<div class="container">
+<h1> Update movie </h1>
+
+
+<form action="/admin/<%= furniture._id %>" method="POST">
+
+<div class="form-group" >
+	Name:<input type="text" name="title" class="form-control"  value="<%= furniture.title %>">
+</div>
+ <div class="form-group">
+	Genre:<input type="text" name="genre" class="form-control" value="<%= furniture.genre %>">
+</div>
+<div class="form-group">
+	Image:<input type="text" name="image" class="form-control" value=<%= furniture.image %>>
+</div>
+<div class="form-group">
+	Description:<textarea name="description" class="form-control"><%= furniture.description %></textarea>
+</div>
+<div class="form-group">
+	Quantity<input name="quantity" class="form-control" value=<%= furniture.quantity %>>
+</div>
+<div class="form-group">
+	Price<input name="price" class="form-control" value=<%= furniture.price %>>
+</div>
+<div class="form-group">
+	<button type="submit" class="btn btn-info" >Save</button>
+	<button type="submit" class="btn btn-info" href="/admin">Cancel</button>
+</div>
+
+
+
+</form>
+
+</div>
+
+</body>
+</html>

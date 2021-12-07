@@ -1,0 +1,98 @@
+<!------------------------------------------------------------- 
+	admin index page
+--------------------------------------------------------------->
+<%- include ('partials/header') %>
+
+  <nav class="navbar navbar-light bg-light">
+  
+    <div class="container-fluid">
+      <form class="d-flex">
+        
+        <input class="form-control me-2" placeholder="Input Title" aria-label="Search" name="stitle" id="stitle">
+        <button class="btn btn-outline-success" role="button" onclick="search(); return false;">Search</button>
+      </form>
+      <div>
+        <a class="btn btn-primary btn-lg" href="/admin/new" role="button">Add new furniture</a>
+       <a class="btn btn-primary btn-lg" id="logout" href="/" role="button">Logout</a>
+      </div> 
+  
+    </div>
+  </nav>
+  
+  
+  <div class="container-fluid" id="left">
+  
+  <div class="row" id="Genre">
+    <div class="col-md-2"><!--col-md-2-->
+      <br>
+      <div class="card" >
+        <div class="card-header">CATEGORY</div>
+        <ul class="list-group list-group-flush" id="continents-content">
+          <li class="list-group-item">Sofa <input type="checkbox" name="items" onclick = pick() value="sofas"></li>
+          <li class="list-group-item">Chair <input type="checkbox" name="items" onclick = pick() value="chairs"></li>
+          <li class="list-group-item">Table <input type="checkbox" name="items" onclick = pick() value="tables"></li>
+          <li class="list-group-item">Bench <input type="checkbox" name="items" onclick = pick() value="benches"></li>
+          <li class="list-group-item">Stools <input type="checkbox" name="items" onclick = pick() value="stools"></li>
+          <li class="list-group-item">Dressers <input type="checkbox" name="items" onclick = pick() value="dressers"></li>
+          <li class="list-group-item">Recliners <input type="checkbox" name="items" onclick = pick() value="recliners"></li>
+          <li class="list-group-item">Ottomans <input type="checkbox" name="items" onclick = pick() value="ottomans"></li>
+          <li class="list-group-item">Nightstands <input type="checkbox" name="items" onclick = pick() value="nightstands"></li>
+          <li class="list-group-item">TV stands <input type="checkbox" name="items" onclick = pick() value="stands"></li>
+        </ul>
+      </div>
+      
+    </div><!--col-md-2-->
+  
+  
+    <div class="col-md-10">
+      <br>
+        <!-- Main -->
+      <div class="row" id="list">
+        <% results.slice(0,10).forEach(function(furniture){ 
+         %>
+          <div class="sm-col-3">
+            <img src="images/<%= furniture.image %>" style="width:200px; height:200px;" class="img-thumbnail"/>
+            <div class="caption"><a href="/admin/<%= furniture._id %>"><%= furniture.title %></a></div>
+          </div>
+  <% }); %>
+      </div>
+    </div><!--col-md-10-->
+
+    <script src="../javascripts/admin.js"></script>
+  
+  </div>
+  </div>
+
+
+  
+
+<%- include ('partials/pagination') %>
+<script>
+$(".page-link").click(function() {
+  //0~10
+  var index = $(this).text();
+  var start = (index-1)*10;
+  var end = start+10;
+
+  $.ajax({
+              method:'GET',
+              url:'/api/furniture',
+              success: function(items){
+                
+                $("#list").empty();
+                $.each(items.slice(start, end), function(i, item){
+                      
+                      $("#list").append('<div class="sm-col-3"><img src="images/'+item.image +
+                        '" style="width:200px; height:200px;" class="img-thumbnail"/><div class="caption"><a href="/admin/'+ item._id +
+                        '">'+ item.title +'</a></div></div>');
+                    });
+              },
+              error: function(){
+                alert("Error inserting");
+              }
+            });
+
+  });
+  </script>
+<%- include ('partials/footer') %>
+

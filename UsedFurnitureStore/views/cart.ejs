@@ -1,0 +1,22 @@
+<%- include ('partials/header') %>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+  <h1>My Cart</h1> 
+  <div style="text-align: right; margin-right:.5rem;">
+    <a class="btn btn-primary btn-lg" id="history" href="/user" role="button">Back to shop</a>
+    <a class="btn btn-primary btn-lg" id="history" href="/user/history" role="button">History</a>
+    <a class="btn btn-primary btn-lg" id="logout" href="/" role="button">Logout</a>
+  </div>
+  </div>
+</nav>
+  
+<script src="../javascripts/cart.js"></script>	
+
+<div style="float: right; margin-right:5.5rem;">
+  <h2 >Total: $<span id="total"></span></h2>
+  <button class="btn btn-warning" role="button"  type="submit" onclick="purchaseClicked()">Purchase</button>
+</div>
+<!--ul id="videolist"></ul-->
+
+</body>
+</html>
